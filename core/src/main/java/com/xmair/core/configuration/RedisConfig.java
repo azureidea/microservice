@@ -3,14 +3,12 @@ package com.xmair.core.configuration;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.redisson.Redisson;
-import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.redisson.client.RedisConnectionException;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.ClusterServersConfig;
 import org.redisson.config.Config;
 import org.redisson.config.ReadMode;
-import org.redisson.config.TransportMode;
 import org.redisson.spring.cache.CacheConfig;
 import org.redisson.spring.cache.RedissonSpringCacheManager;
 import org.slf4j.Logger;
@@ -88,7 +86,7 @@ public class RedisConfig extends CachingConfigurerSupport
     @Bean
     public RedissonClient initRedissonClient () {
         Config config = new Config();
-        config.setTransportMode(TransportMode.EPOLL);
+        //config.setTransportMode(TransportMode.EPOLL);
         config.setLockWatchdogTimeout(20000);
 
         JsonJacksonCodec codec=JsonJacksonCodec.INSTANCE;
@@ -108,7 +106,7 @@ public class RedisConfig extends CachingConfigurerSupport
         serversConfig.setSlaveConnectionPoolSize(maxConnectionSize);
         serversConfig.setMasterConnectionPoolSize(maxConnectionSize);
         serversConfig.setIdleConnectionTimeout(20000);
-        serversConfig.setConnectTimeout(3000);
+        serversConfig.setConnectTimeout(2000);
 
         // 使用 lambda 表达式以及函数操作(functional operation)
         nodeAddresses.forEach((node) -> serversConfig.addNodeAddress(node));

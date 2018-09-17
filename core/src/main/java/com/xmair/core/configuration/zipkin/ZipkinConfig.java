@@ -11,12 +11,8 @@ import brave.propagation.B3Propagation;
 import brave.propagation.ExtraFieldPropagation;
 import brave.sampler.Sampler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import zipkin2.Span;
-import zipkin2.codec.Encoding;
-import zipkin2.codec.SpanBytesEncoder;
 import zipkin2.reporter.AsyncReporter;
 import zipkin2.reporter.kafka11.KafkaSender;
 
@@ -24,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-@Configuration
+//@Configuration
 public class ZipkinConfig {
 
     @Autowired

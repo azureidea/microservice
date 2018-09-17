@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 public class FramedbConfig {
 
     @Bean(name = "framedbDataSource")
-    @ConfigurationProperties(prefix = "framedb.spring.datasource")
+    @ConfigurationProperties(prefix = "first.spring.datasource")
 
     public DataSource framedbDataSource() {
         return new DruidDataSource();

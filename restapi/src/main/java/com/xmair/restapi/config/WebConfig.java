@@ -1,53 +1,32 @@
 package com.xmair.restapi.config;
 
-import brave.Tracing;
-import brave.http.HttpTracing;
-import brave.propagation.B3Propagation;
-import brave.propagation.ExtraFieldPropagation;
-import brave.spring.webmvc.TracingHandlerInterceptor;
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xmair.core.configuration.ProtostuffHttpMessageConverter;
 import com.xmair.core.util.DateConverter;
 import com.xmair.restapi.apiversion.VersionHandlerMapping;
-
-import okhttp3.OkHttpClient;
-import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
-import org.springframework.http.converter.xml.Jaxb2CollectionHttpMessageConverter;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import zipkin2.Span;
-import zipkin2.reporter.AsyncReporter;
-import zipkin2.reporter.kafka11.KafkaSender;
 
 import javax.annotation.PostConstruct;
 import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
-@Import({TracingHandlerInterceptor.class})
+//@Import({TracingHandlerInterceptor.class})
 @Configuration
 @ComponentScan(basePackages = {"com.xmair.core.configuration"
         ,"com.xmair.core.util"
@@ -68,8 +47,8 @@ public class WebConfig extends WebMvcConfigurationSupport {
     public MappingJackson2HttpMessageConverter jsonConverter;
 
 
-    @Autowired
-    private TracingHandlerInterceptor serverZipkinInterceptor;
+   // @Autowired
+   // private TracingHandlerInterceptor serverZipkinInterceptor;
 
     @Primary
     @Bean
@@ -87,10 +66,10 @@ public class WebConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(serverZipkinInterceptor)
+      /*  registry.addInterceptor(serverZipkinInterceptor)
                 .excludePathPatterns("/metrics/**")
                 .excludePathPatterns("/v2/api-docs","/configuration/**","/swagger-resources/**");
-
+*/
         registry.addInterceptor(new PrometheusMetricsInterceptor()).addPathPatterns("/**");
 
        

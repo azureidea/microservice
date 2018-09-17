@@ -13,12 +13,12 @@ import java.util.List;
 
 @SuppressWarnings({ "deprecation", "rawtypes", "unchecked" })
 public class OracleGenerator {
-	private static String url = "jdbc:oracle:thin:@192.168.84.235:1521:x64devdb";
+	private static String url = "jdbc:mysql://172.16.4.187:3306/microservice";
 
-	private static String driver="oracle.jdbc.OracleDriver";
+	private static String driver="com.mysql.jdbc.Driver";
 
-	private static String user = "itfw_app";
-	private static String password = "itiu0pk";
+	private static String user = "root";
+	private static String password = "password";
 
 	private static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Connection connection;
@@ -50,7 +50,7 @@ public class OracleGenerator {
 
 		Generator generator = new Generator(config);
 
-		String tableNamePattern = "TB_EMP_DATA";
+		String tableNamePattern = "%";
 		Connection connection=getConnection();
 		DataProcessor t = new DataProcessor(connection);
 

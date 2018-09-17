@@ -1,7 +1,5 @@
 package com.xmair.core.configuration;
 
-import brave.http.HttpTracing;
-import brave.okhttp3.TracingInterceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.ConnectionPool;
 import okhttp3.Dispatcher;
@@ -36,8 +34,9 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class HttpClientConfig {
 
-    @Autowired
+  /*  @Autowired
     HttpTracing  httpTracing;
+*/
     @Autowired
     public MappingJackson2HttpMessageConverter jsonConverter;
 
@@ -50,8 +49,8 @@ public class HttpClientConfig {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .protocols(Collections.singletonList(Protocol.H2_PRIOR_KNOWLEDGE));
         Dispatcher dispatcher=new Dispatcher(
-                httpTracing.tracing().currentTraceContext()
-                        .executorService(new Dispatcher().executorService())
+               // httpTracing.tracing().currentTraceContext()
+              //          .executorService(new Dispatcher().executorService())
         );
         //设置连接池大小
         dispatcher.setMaxRequests(500);
@@ -63,11 +62,11 @@ public class HttpClientConfig {
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .connectionPool(pool)
-                
+                //链路监控埋
+              //  .addNetworkInterceptor(TracingInterceptor.create(httpTracing))
                 .dispatcher(dispatcher)
-                .retryOnConnectionFailure(true)
-               //链路监控埋
-                .addNetworkInterceptor(TracingInterceptor.create(httpTracing));
+                .retryOnConnectionFailure(true);
+
                 //.addInterceptor(new OkHttpInterceptor())
 
         return builder.build();

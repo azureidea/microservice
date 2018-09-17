@@ -3,20 +3,20 @@
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
     <property name="LOG_HOME" value="logs" />
 
-    <!--kafka日志输出类-->
+   <!-- &lt;!&ndash;kafka日志输出类&ndash;&gt;
     <appender name="KAFKA" class="com.xmair.core.configuration.kafka.KafkaAppender">
         <topic>log-application</topic>
         <brokerList>11.4.74.45:9092,11.4.74.47:9092,11.4.74.50:9092</brokerList>
         <formatter class="com.xmair.core.configuration.kafka.MessageFormatter">
 
         </formatter>
-<!--
+&lt;!&ndash;
         <encoder class="com.github.danielwegener.logback.kafka.encoding.PatternLayoutKafkaMessageEncoder">
             <layout class="net.logstash.logback.layout.LogstashLayout" />
             <pattern>  %X{ip} %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n</pattern>
-        </encoder>-->
+        </encoder>&ndash;&gt;
     </appender>
-
+-->
 
 
 
@@ -65,9 +65,9 @@
     <!-- 日志输出级别 -->
     <root level="INFO">
          <appender-ref ref="STDOUT" />
-        <!--   <appender-ref ref="FILE" />
-          <appender-ref ref="mqAsyncAppender1"></appender-ref>-->
-        <appender-ref ref="KAFKA"/>
+        <appender-ref ref="FILE" />
+        <!--  <appender-ref ref="mqAsyncAppender1"></appender-ref>
+     <appender-ref ref="KAFKA"/>-->
     </root>
 
 </configuration>

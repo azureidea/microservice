@@ -1,7 +1,6 @@
 package com.xmair.restapi.config;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +43,6 @@ public class SwaggerConfig {
                 .title("Spring Boot中使用Swagger2构建RESTful APIs")
                 .description("api文档")
 
-                .termsOfServiceUrl("http://www.xiamenair.com/")
-                .contact("12")
                 .version("1.0")
                 .build();
     }
