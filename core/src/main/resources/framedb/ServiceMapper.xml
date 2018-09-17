@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${mapperlPackage}.ServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.xmair.core.entity.framedb.Service" >	
+    <id column="service_id" property="serviceId" jdbcType="VARCHAR" />
+
+    <result column="service_updated_at" property="serviceUpdatedAt" jdbcType="DATE"  />
+    <result column="service_host" property="serviceHost" jdbcType="VARCHAR"  />
+    <result column="service_read_timeout" property="serviceReadTimeout" jdbcType="INTEGER"  />
+    <result column="service_name" property="serviceName" jdbcType="VARCHAR"  />
+    <result column="service_write_timeout" property="serviceWriteTimeout" jdbcType="INTEGER"  />
+    <result column="service_created_at" property="serviceCreatedAt" jdbcType="DATE"  />
+    <result column="service_provider_id" property="serviceProviderId" jdbcType="VARCHAR"  />
+    <result column="service_protocol" property="serviceProtocol" jdbcType="VARCHAR"  />
+    <result column="service_status" property="serviceStatus" jdbcType="CHAR"  />
+    <result column="service_connect_timeout" property="serviceConnectTimeout" jdbcType="INTEGER"  />
+    <result column="service_path" property="servicePath" jdbcType="VARCHAR"  />
+    <result column="service_retries" property="serviceRetries" jdbcType="INTEGER"  />
+    <result column="service_port" property="servicePort" jdbcType="VARCHAR"  />
+
+  </resultMap>
+ </mapper>

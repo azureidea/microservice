@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${mapperlPackage}.ProviderMapper" >
+  <resultMap id="BaseResultMap" type="com.xmair.core.entity.framedb.Provider" >	
+    <id column="provider_id" property="providerId" jdbcType="VARCHAR" />
+
+    <result column="provider_status" property="providerStatus" jdbcType="CHAR"  />
+    <result column="provider_users" property="providerUsers" jdbcType="VARCHAR"  />
+    <result column="created_at" property="createdAt" jdbcType="DATE"  />
+    <result column="provider_name" property="providerName" jdbcType="VARCHAR"  />
+    <result column="app_id" property="appId" jdbcType="VARCHAR"  />
+
+  </resultMap>
+ </mapper>

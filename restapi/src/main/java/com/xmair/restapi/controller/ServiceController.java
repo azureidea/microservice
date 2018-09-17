@@ -1,35 +1,36 @@
-package ${restControllerPackage};
-import ${modelPackage}.${beanName};
-import ${mapperPackage}.${beanName}Mapper;
-import com.xmair.core.util.ResultBean;
+package com.xmair.restapi.controller;
+
+import com.xmair.core.entity.framedb.Service;
 import com.xmair.core.exception.ExceptionEnum;
-import org.springframework.validation.annotation.Validated;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import com.xmair.core.mapper.framedb.ServiceMapper;
+import com.xmair.core.util.JsonUtil;
+import com.xmair.core.util.ResultBean;
 import com.xmair.restapi.apiversion.ApiVersion;
+import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.xmair.core.util.JsonUtil;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 /**
 * <p>
     * </p>
 *
-* @author ${author}
-* @date ${dateTime}
+* @author wuzuquan
+* @date 2018-09-17 15:20:18
 * @version
 */
 @RestController
-@RequestMapping(value = "/${lowerBeanName}")
+@RequestMapping(value = "/service")
 @ApiVersion(1)
-public class ${beanName}Controller {
+public class ServiceController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -37,40 +38,40 @@ public class ${beanName}Controller {
     @Autowired
     private HttpServletResponse response;
     @Autowired
-    private ${beanName}Mapper mapper;
+    private ServiceMapper mapper;
 
 
     @ApiOperation(value="获取单条记录", notes="根据url的id来获取详细信息")
     @RequestMapping(value = "/get",method = RequestMethod.GET)
-    public ResultBean<${beanName}> get(String id){
-        ${beanName} item=  mapper.selectByPrimaryKey(id);
+    public ResultBean<Service> get(String id){
+        Service item=  mapper.selectByPrimaryKey(id);
         if(item!=null){
-            return new ResultBean<${beanName}>(item);
+            return new ResultBean<Service>(item);
         }else {
-            return new ResultBean<${beanName}>(ExceptionEnum.RESOURCE_NOT_FOUND,null,"找不到该记录",null);
+            return new ResultBean<Service>(ExceptionEnum.RESOURCE_NOT_FOUND,null,"找不到该记录",null);
         }
     }
 
 
     @RequestMapping(value = "/getlist",method = RequestMethod.GET)
-    public ResultBean<List<${beanName}>> getList(){
-        List<${beanName}> list=  mapper.selectAll();
-        ResultBean<List<${beanName}>> resultBean=new ResultBean<List<${beanName}>>(list);
+    public ResultBean<List<Service>> getList(){
+        List<Service> list=  mapper.selectAll();
+        ResultBean<List<Service>> resultBean=new ResultBean<List<Service>>(list);
         return  resultBean;
     }
 
     @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public ResultBean<String> create(@RequestBody @Validated ${beanName} item){
+    public ResultBean<String> create(@RequestBody @Validated Service item){
         int  result= mapper.insertSelective(item);
-        logger.info("create ${beanName} success,record,{}"+ JsonUtil.bean2Json(item));
+        logger.info("create Service success,record,{}"+ JsonUtil.bean2Json(item));
         ResultBean<String> resultBean=new ResultBean<String>("");
         return  resultBean;
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public ResultBean<String> update(@RequestBody @Validated ${beanName} item){
+    public ResultBean<String> update(@RequestBody @Validated Service item){
         int  result=  mapper.updateByPrimaryKeySelective(item);
-        logger.info("update ${beanName} success,record,{}"+ JsonUtil.bean2Json(item));
+        logger.info("update Service success,record,{}"+ JsonUtil.bean2Json(item));
         ResultBean<String> resultBean=new ResultBean<String>("");
         return  resultBean;
     }
@@ -78,13 +79,13 @@ public class ${beanName}Controller {
     @RequestMapping(value = "/deleteByID",method = RequestMethod.POST)
     public ResultBean<Integer> delete(String id){
         int  result=  mapper.deleteByPrimaryKey(id);
-        logger.info("delete ${beanName} success,record id,{}"+ id);
+        logger.info("delete Service success,record id,{}"+ id);
         ResultBean<Integer> resultBean=new ResultBean<Integer>(result);
         return  resultBean;
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public ResultBean<Integer> delete(@RequestBody @Validated ${beanName} item){
+    public ResultBean<Integer> delete(@RequestBody @Validated Service item){
         int  result=  mapper.delete(item);
         ResultBean<Integer> resultBean=new ResultBean<Integer>(result);
         return  resultBean;

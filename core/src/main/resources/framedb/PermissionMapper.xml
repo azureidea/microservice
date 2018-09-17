@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${mapperlPackage}.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.xmair.core.entity.framedb.Permission" >	
+    <id column="permission_service_id" property="permissionServiceId" jdbcType="VARCHAR" />
+    <id column="permission_consumer_id" property="permissionConsumerId" jdbcType="VARCHAR" />
+
+    <result column="permission_status" property="permissionStatus" jdbcType="CHAR"  />
+
+  </resultMap>
+ </mapper>
