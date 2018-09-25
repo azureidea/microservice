@@ -1,4 +1,4 @@
-
+友情提醒：依赖了DB  redis  rocketmq  kafka  consul，要能正常运行，先把后台中间件搭好。大家各取所需吧，没必要的客户端配置可以删掉。
 
 ## spring boot开发框架目标
 * 适应容器云环境
