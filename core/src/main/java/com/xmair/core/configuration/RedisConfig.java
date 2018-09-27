@@ -98,7 +98,7 @@ public class RedisConfig extends CachingConfigurerSupport
             serversConfig.setPassword(password);
         }
         serversConfig.setReadMode(ReadMode.MASTER_SLAVE);
-        
+
         serversConfig.setMasterConnectionMinimumIdleSize(masterConnectionMinimumIdleSize);
         serversConfig.setSlaveConnectionMinimumIdleSize(slaveConnectionMinimumIdleSize);
         serversConfig.setSubscriptionConnectionMinimumIdleSize(5);
@@ -107,7 +107,8 @@ public class RedisConfig extends CachingConfigurerSupport
         serversConfig.setMasterConnectionPoolSize(maxConnectionSize);
         serversConfig.setIdleConnectionTimeout(20000);
         serversConfig.setConnectTimeout(2000);
-
+        //断线重连
+        serversConfig.setPingConnectionInterval(4000);
         // 使用 lambda 表达式以及函数操作(functional operation)
         nodeAddresses.forEach((node) -> serversConfig.addNodeAddress(node));
         try {

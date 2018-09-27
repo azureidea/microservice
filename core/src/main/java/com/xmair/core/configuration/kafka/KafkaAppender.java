@@ -4,12 +4,9 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
-
 import java.util.Properties;
-
 public class KafkaAppender extends AppenderBase<ILoggingEvent> {
 
     public   static  int applicationStatus=0;

@@ -3,7 +3,7 @@ package com.xmair.core.configuration.zipkin;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration( )
 @ConfigurationProperties(prefix = "com.zipkin")
 public class ZipkinProperties {
 
@@ -25,6 +25,7 @@ public class ZipkinProperties {
     }
 
     public void setKafkaHosts(String kafkaHosts) {
+
         this.kafkaHosts = kafkaHosts;
     }
 
